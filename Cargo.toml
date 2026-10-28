@@ -1,0 +1,28 @@
+[package]
+name = "supply_chain"
+version = "0.2.0"
+edition = "2021"
+description = "Supply chain, logistics, warehouse and inventory management API (Axum + SeaORM + PostgreSQL)"
+
+[dependencies]
+axum = "0.7"
+tokio = { version = "1", features = ["full"] }
+tower-http = { version = "0.5", features = ["trace", "cors"] }
+sea-orm = { version = "1.1", features = [
+    "sqlx-postgres", "runtime-tokio-rustls", "macros",
+    "with-chrono", "with-uuid", "with-rust_decimal", "with-json",
+] }
+sea-orm-migration = { version = "1.1", features = ["sqlx-postgres", "runtime-tokio-rustls"] }
+rust_decimal = { version = "1", features = ["serde-with-str"] }
+serde = { version = "1", features = ["derive"] }
+serde_json = "1"
+uuid = { version = "1", features = ["v4", "serde"] }
+chrono = { version = "0.4", features = ["serde"] }
+thiserror = "1"
+anyhow = "1"
+dotenvy = "0.15"
+tracing = "0.1"
+tracing-subscriber = { version = "0.3", features = ["env-filter"] }
+
+[profile.release]
+lto = "thin"
